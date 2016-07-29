@@ -1,0 +1,15 @@
+doctype html
+html(ng-app = "app")
+	head
+		title= title
+		link(rel='stylesheet', href='/css/style.css')
+		link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet")
+		script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js")
+		script(src='/app/app.js')
+		script(src='/app/services/http.service.js')
+		script(src='/app/components/admin.js')
+		script(src='/app/components/productAdd.js')
+		script(src='/app/components/categoryAdd.js')
+		script(src='/app/components/categoryAttributeAdd.js')
+	body
+		block content
