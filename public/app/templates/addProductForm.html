@@ -20,26 +20,8 @@
             <option style="display:none" value="">Blank</option>
         </select>
     </div>
-    <hr>
-    <div class="form-group">
-        <label>Select name of atribute : </label>
-        <select ng-options="item as item.title for item in $ctrl.attributes track by item.title" ng-model="$ctrl.attributeSelected" required>
-            <option style="display:none" value="">Blank</option>
-        </select>
-    </div>
 
-    <div class="form-group">
-        <label>Select type of atribute : </label>
-        <select ng-options="item as item.title for item in $ctrl.attrtypes track by item.title" ng-model="$ctrl.attributeTypeSelected" required>
-            <option style="display:none" value="">Blank</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label>Add attribute value : </label>
-        <input type="text" name="desc" class="form-control" placeholder="attribute value" ng-model="$ctrl.product.attrvalue" required>
-    </div>
-    <hr>
+    <attribute-value-add attributeSelected="$ctrl.attributeSelected> </attribute-value-add>
 
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Submit</button>

@@ -9,15 +9,8 @@
                     this.categories = data.data;
                 });
 
-                ProductService.getAttribute().then(data => { // attributeSelected.id
-                    this.attributes = data.data;
-                });
-
-                ProductService.getAttributeType().then(data => { // attributeTypeSelected.id
-                    this.attrtypes = data.data;
-                });
-
                 this.submitForm = function() {
+                    console.log(this.attributeSelected);
                     this.product.category = this.categorySelected.id;
                     this.product.attribute = this.attributeSelected.title;
                     this.product.type = this.attributeTypeSelected.title;

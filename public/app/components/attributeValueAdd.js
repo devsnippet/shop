@@ -3,6 +3,9 @@
 
     angular.module('app')
         .component('attributeValueAdd', {
+            bindings: {
+                attributeSelected: "<attributeSelected",
+            },
             templateUrl: '/app/templates/addAttributeValueForm.html',
             controller: function(ProductService) {
 
@@ -14,26 +17,7 @@
                     this.attrtypes = data.data;
                 });
 
-                this.submitForm = function() {
-                    this.product.attribute = this.attributeSelected.title;
-                    this.product.type = this.attributeTypeSelected.title;
-
-                    ProductService.addProduct(this.categorySelected.id, convertToTransferObj(this.product)).then(data => {
-                        this.product = {};
-                        this.categorySelected = null;
-                        this.attributeSelected = null;
-                        this.attributeTypeSelected = null;
-                        this.form.$setPristine();
-                    });
-                };
-
-                function convertToTransferObj(product){
-                    return  {
-                        attribute:  product.attribute,
-                        type:       product.type,
-                        attrvalue:  product.attrvalue
-                    }
-                }
+                console.log(this.attributeTypeSelected);
             }
         })
 
