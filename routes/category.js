@@ -5,36 +5,42 @@ var db = require('./../server/db');
 // GET ---------------------------------------------------------------
 router.get('/', function(req, res) {
     db.getAllCategory(function(err, data) {
+        if (err) throw err;
         res.send(data);
     });
 });
 
 router.get('/:id', function(req, res) {
     db.getCategoryById(req.params.id, function(err, data) {
+        if (err) throw err;
         res.send(data);
     });
 });
 
 router.get('/:id/product', function(req, res) {
     db.getAllProduct(req.params.id, function(err, data) {
+        if (err) throw err;
         res.send(data);
     });
 });
 
 router.get('/:id/product/:productId', function(req, res) {
     db.getProductById(req.params.id, req.params.productId, function(err, data) {
+        if (err) throw err;
         res.send(data);
     });
 });
 
 router.get('/1/attribute', function(req, res) {
     db.getAllAttribute(function(err, data) {
+        if (err) throw err;
         res.send(data);
     });
 });
 
 router.get('/1/attribute-type', function(req, res) {
     db.getAllAttributeType(function(err, data) {
+        if (err) throw err;
         res.send(data);
     });
 });

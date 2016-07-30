@@ -1,28 +1,23 @@
-(function(){
-    'use strict';
+angular.module('app')
+    .component('attributeAdd', {
+        templateUrl: '/app/templates/addAttributeForm.html',
+        controller: function(CategoryService, AttributeService) {
+            CategoryService.getCategory().then(data => {
+                this.items = data.data;
+            });
 
-    angular.module('app')
-        .component('attributeAdd', {
-            templateUrl: '/app/templates/addAttributeForm.html',
-            controller: function(CategoryService, AttributeService) {
-                CategoryService.getCategory().then(data => {
-                    this.items = data.data;
+            this.submitForm = function(){
+                AttributeService.addAttribute(this.categorySelected.id, convertToTransferObj(this.attribute)).then(data => {
+                    this.attribute = {};
+                    this.categorySelected = null;
+                    this.form.$setPristine();
                 });
+            };
 
-                this.submitForm = function(){
-                    AttributeService.addAttribute(this.categorySelected.id, convertToTransferObj(this.attribute)).then(data => {
-                        this.attribute = {};
-                        this.categorySelected = null;
-                        this.form.$setPristine();
-                    });
-                };
-
-                function convertToTransferObj(attribute){
-                    return  {
-                        title: attribute.title,
-                    }
+            function convertToTransferObj(attribute){
+                return  {
+                    title: attribute.title,
                 }
             }
-        })
-
-})();
+        }
+    })

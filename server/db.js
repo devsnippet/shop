@@ -13,10 +13,6 @@ db.getAllCategory = function(callback) {
     conn.query('SELECT * FROM category', callback);
 }
 
-db.getAllProduct = function(id, callback) {
-    conn.query('SELECT * FROM product WHERE category_id =' + id, callback);
-}
-
 db.getAllAttribute = function(callback) {
     conn.query('SELECT * FROM attribute_name', callback);
 }
@@ -29,15 +25,29 @@ db.getCategoryById = function(id, callback) {
     conn.query('SELECT * FROM category WHERE id =' + id, callback);
 }
 
+db.getAllProduct = function(id, callback) {
+    conn.query('SELECT * FROM product WHERE category_id =' + id, callback);
+}
+
 db.getProductById = function(id, productid, callback) {
     conn.query("SELECT * FROM product WHERE id = " + productid + " and category_id = " + id, callback);
 }
 
 // ADD
 db.addProduct = function(categoryId, product) {
-    console.log(product);
     conn.query("INSERT INTO product (category_id, title, description)" +
-        "VALUES ('"+ categoryId +"', '"+ product.title +"', '"+ product.desc +"')");
+        "VALUES ('"+ categoryId +"', '"+ product.title +"', '"+ product.desc +"')", function(err, result) {
+
+        if (err) throw err;
+
+        conn.query("INSERT INTO attribute_value (product_id, title, attribute_name_title, value)" +
+            "VALUES ('"+ result.insertId +"', '"+ product.type +"', '"+ product.attribute +"', '"+
+                product.attrvalue +"')" , function(err, result) {
+
+            if (err) throw err;
+        });
+
+    });
 }
 
 db.addAttributeType = function(attributeType) {

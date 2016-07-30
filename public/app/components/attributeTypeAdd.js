@@ -1,24 +1,19 @@
-(function(){
-    'use strict';
+angular.module('app')
+    .component('attributeTypeAdd', {
+        templateUrl: '/app/templates/addAttributeTypeForm.html',
+        controller: function(AttributeTypeService) {
 
-    angular.module('app')
-        .component('attributeTypeAdd', {
-            templateUrl: '/app/templates/addAttributeTypeForm.html',
-            controller: function(AttributeTypeService) {
+            this.submitForm = function(){
+                AttributeTypeService.addAttributeType(convertToTransferObj(this.attributeType)).then(data => {
+                    this.attributeType = {};
+                    this.form.$setPristine();
+                });
+            };
 
-                this.submitForm = function(){
-                    AttributeTypeService.addAttributeType(convertToTransferObj(this.attributeType)).then(data => {
-                        this.attributeType = {};
-                        this.form.$setPristine();
-                    });
-                };
-
-                function convertToTransferObj(attributeType){
-                    return  {
-                        title: attributeType.title,
-                    }
+            function convertToTransferObj(attributeType){
+                return  {
+                    title: attributeType.title,
                 }
             }
-        })
-
-})();
+        }
+    })

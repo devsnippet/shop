@@ -1,7 +1,4 @@
-(function(){
-    'use strict';
-
-    angular.module('app')
+angular.module('app')
     .component('categoryAdd', {
         templateUrl: '/app/templates/addCategoryForm.html',
         controller: function(CategoryService) {
@@ -31,5 +28,3 @@
             }
         }
     })
-
-})();
