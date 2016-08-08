@@ -1,0 +1,38 @@
+<strong class="title" ng-click="show = !show"> Product ADD</strong>
+<form name="$ctrl.form" ng-submit="$ctrl.submitForm()" ng-if="show" ng-cloak>
+    <div class="form-group">
+        <input type="text" name="title" class="form-control" placeholder="title" ng-model="$ctrl.product.title" required>
+        <span style="color:red" ng-show="form.title.$dirty && form.title.$invalid">
+        <span ng-show="form.title.$error.required && !form.title.$pristine">Title of product required.</span>
+        <span ng-show="form.title.$error.pattern">Invalid </span>
+        </span>
+    </div>
+    <div class="form-group">
+        <input type="text" name="desc" class="form-control" placeholder="decription" ng-model="$ctrl.product.desc" required>
+        <span style="color:red" ng-show="form.desc.$dirty && form.desc.$invalid">
+        <span ng-show="form.desc.$error.required && !form.desc.$pristine">Description is required.</span>
+        <span ng-show="form.desc.$error.pattern">Invalid </span>
+        </span>
+    </div>
+    <div class="form-group">
+        <label>Category : </label>
+        <select ng-options="item as item.title for item in $ctrl.categories track by item.id" ng-model="$ctrl.categorySelected" required>
+            <option style="display:none" value="">Blank</option>
+        </select>
+    </div>
+
+    <div class="add">
+        <strong ng-click="$ctrl.attribute.add()">add attribute</strong>
+    </div>
+
+    <attribute-value-add ng-repeat="i in $ctrl.attribute.count"
+                         index="i",
+                         attribute="$ctrl.attribute"
+                         attribute-selected="$ctrl.attributeSelected['item'+i]"
+                         attribute-type-selected="$ctrl.attributeTypeSelected['item'+i]"
+                         attrvalue="$ctrl.attrvalue['item'+i]"> </attribute-value-add>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

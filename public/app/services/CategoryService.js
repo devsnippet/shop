@@ -2,11 +2,11 @@ angular
     .module('app')
     .service('CategoryService', function($http) {
         return {
-            getCategory: function(){
-                return $http.get('/category');
+            getAllCategory: function(){
+                return $http.get('/api/category');
             },
             addCategory: function(newCategory){
-                return $http.post('/category', newCategory);
+                return $http.post('/api/category', newCategory);
             }
         }
 

@@ -4,8 +4,7 @@ var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var category = require('./routes/category');
-var admin = require('./routes/admin');
+var api = require('./routes/api');
 
 var app = express();
 console.log('Express initialized!');
@@ -26,9 +25,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.use('/', routes);
 
-app.use('/admin', admin);
-
-app.use('/category', category);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

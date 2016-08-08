@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <!--Sidebar content-->
+
+            <p>
+                Поиск:
+                <input ng-model="$ctrl.query">
+            </p>
+
+            <p>
+                Category :
+                <select ng-options="item as item.title for item in $ctrl.categories track by item.title" ng-model="$ctrl.selected" required>
+                    <option style="display:none" value="">Blank</option>
+                </select>
+            </p>
+
+            <p>
+                Sort by:
+                <select ng-model="$ctrl.orderProp">
+                    <option value="title">Alphabetical</option>
+                    <option value="age">Newest</option>
+                </select>
+            </p>
+
+        </div>
+        <div class="col-md-10">
+            <!--Body content-->
+            <ul class="phones">
+                <li ng-repeat="product in $ctrl.products | filter:{ category: $ctrl.selected.title } |
+                                filter:$ctrl.query | orderBy:$ctrl.orderProp" class="thumbnail">
+                    <a href="#/product/{{product.id}}" class="thumb">
+                        <img ng-src="images/{{$ctrl.image}}" alt="{{product.title}}" />
+                    </a>
+                    <a href="#/product/{{product.id}}">{{product.title}}</a>
+                    <p>
+                        {{product.description}}
+                         <span ng-repeat="attribute in $ctrl.attributes | filter:{product_id: product.id}">
+                            {{attribute.attribute_name_title}} {{attribute.value}} {{attribute.title}}
+                        </span>
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>

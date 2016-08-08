@@ -1,0 +1,9 @@
+<strong class="title" ng-click="show = !show">Attribute Type ADD</strong>
+<form name="$ctrl.form" ng-submit="$ctrl.submitForm()" ng-if="show">
+    <div class="form-group">
+        <input type="text" name="title" class="form-control" placeholder="title" ng-model="$ctrl.attributeType.title">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

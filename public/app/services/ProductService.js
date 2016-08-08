@@ -2,17 +2,20 @@ angular
     .module('app')
     .service('ProductService', function($http) {
         return {
-            getCategory: function(){
-                return $http.get('/category');
+            getAllCategory: function(){
+                return $http.get('/api/category');
             },
-            getAttributeType: function(){
-                return $http.get('/category/1/attribute-type');
+            getAllAttributeType: function(){
+                return $http.get('/api/attribute-type');
             },
-            getAttribute: function(){
-                return $http.get('/category/1/attribute');
+            getAllCategoryAttribute: function(categoryId){
+                return $http.get('/api/category/'+ categoryId +'/attribute');
+            },
+            getAllProduct: function(){
+                return $http.get('/api/product');
             },
             addProduct: function(categoryId, newProduct){
-                return $http.post('/category/'+ categoryId +'/product', newProduct);
+                return $http.post('/api/category/'+ categoryId +'/product', newProduct);
             }
         }
 

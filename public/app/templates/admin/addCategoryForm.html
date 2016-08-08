@@ -1,0 +1,19 @@
+<strong class="title" ng-click="show = !show"> Category ADD</strong>
+<form name="$ctrl.form" ng-submit="$ctrl.submitForm()" ng-if="show">
+    <div class="form-group">
+        <input type="text" name="title" class="form-control" placeholder="title" ng-model="$ctrl.category.title" required maxlength = "50">
+        <span style="color:red" ng-show="form.title.$dirty && form.title.$invalid">
+        <span ng-show="form.title.$error.required && !form.title.$pristine">Category name is required.</span>
+        <span ng-show="form.title.$error.pattern">Invalid username</span>
+        </span>
+    </div>
+    <div class="form-group">
+        <label>Parent Category : </label>
+        <select ng-options="item as item.title for item in $ctrl.items track by item.id" ng-model="$ctrl.categorySelected">
+            <option style="display:none" value="">Blank</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
